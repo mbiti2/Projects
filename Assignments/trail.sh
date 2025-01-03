@@ -33,18 +33,18 @@ DUPLICATE_MAP=$(mktemp)
 awk '{ print $1 }' "$HASH_FILE_MAP" | sort | uniq -d > "$DUPLICATE_MAP"
 
 # Display results
-printf "%-40s | %-10s\n" "File" "Duplicate"
-printf "%-40s | %-10s\n" "----------------------------------------" "----------"
+echo "File | Duplicate"
+echo "-------------------------"
 
 while IFS= read -r line; do
     DUP_FILES=$(grep "$line" "$HASH_FILE_MAP" | awk '{ print $2 }')
     FIRST_FILE=true
     for FILE in $DUP_FILES; do
         if $FIRST_FILE; then
-            printf "%-40s | %-10s\n" "$FILE" "No"
+            echo "$FILE | No"
             FIRST_FILE=false
         else
-            printf "%-40s | %-10s\n" "$FILE" "Yes ($(basename $FIRST_FILE))"
+            echo "$FILE | Yes (matches $(basename "${seen[$line]}"))"
             if $FIX_MODE; then
                 echo "Deleting duplicate: $FILE"
                 rm "$FILE"
