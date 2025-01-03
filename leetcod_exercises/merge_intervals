@@ -1,0 +1,21 @@
+function merge_interval(array of interval) return array interval
+       for i <-- 0 to interval.length - 2 do 
+           for j <-- 0 to interval.length - i - 2 do
+                if interval[j][0] > interval[j+1][0] then
+                    temp <-- interval[j]
+                    interval[j] <-- interval[j+1]
+                    interval[j+1] <-- temp 
+                endif
+            endfor
+        endfor  
+        merged <-- [] 
+        append interval[0] to merged
+        for i <-- 0  to interval.length - 1 do
+            lastmerged <-- merged[merged.length - 1]     
+            if lastmerged[1] >= interval[i][0] then
+                lastmerged[1] <-- max(lastmerged[1], interval[i][1])
+            else
+                append interval[i] to merged
+            endif
+        endfor                  
+endfunction return merged        
