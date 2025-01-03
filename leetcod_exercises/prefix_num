@@ -1,1 +1,15 @@
-function longestCommonPrefix(array of string) return string
+function longestCommonPrefix(array of str) return str
+   if array.length == "" then
+     return ""
+   endif      
+   prefix=""
+   for i<--0 to array[0].length
+     char<--array[0][i]
+       for j<--0 to array.length
+          if array[j][i] !== array[0][i] then
+             return prefix
+          endif
+       endfor
+     prefix<--prefix + char
+   endfor return prefix  
+endfunction   

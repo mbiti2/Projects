@@ -36,15 +36,18 @@ awk '{ print $1 }' "$HASH_FILE_MAP" | sort | uniq -d > "$DUPLICATE_MAP"
 echo "File | Duplicate"
 echo "-------------------------"
 
+
 while IFS= read -r line; do
     DUP_FILES=$(grep "$line" "$HASH_FILE_MAP" | awk '{ print $2 }')
-    FIRST_FILE=true
+    FIRST_FILE=true  # Initialize the flag for first file
+
     for FILE in $DUP_FILES; do
-        if $FIRST_FILE; then
-            echo "$FILE | No"
-            FIRST_FILE=false
+        if [ "$FIRST_FILE" == true ]; then
+            echo "$FILE | No"  # First file is not a duplicate
+            FIRST_FILE=false  # Set to false after processing the first file
         else
-            echo "$FILE | Yes (matches $(basename "${seen[$line]}"))"
+            FIRST_FILE_NAME=$(basename "$FILE")  # Get the filename of the first match
+            echo "$FILE | Yes (matches $FIRST_FILE_NAME)"  # Show duplicate with first file's name
             if $FIX_MODE; then
                 echo "Deleting duplicate: $FILE"
                 rm "$FILE"

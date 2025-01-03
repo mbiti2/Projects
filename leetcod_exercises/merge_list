@@ -1,0 +1,20 @@
+functon mergeSortedList(list1, list2) return array
+   merged_list <-- []
+   pointer1 <-- 0
+   pointer2 <-- 0
+   while pointer1 < list1.length or pointer2 < list2.length do
+         if pointer1 >= list1.length then
+            append list2[pointer2] to merged_list
+            pointer1 <-- pointer2 + 1
+         elseif pointer2 >= list2.length then
+             append list1[pointer1] to merged_list
+             pointer1 <-- pointer1 + 1
+         elseif list1[pointer1] <= list2[pointer2] then
+               append list1[pointer1] to merged_list
+               pointer1 <-- pointer1 + 1       
+          elseif list1[pointer1] >= list2[pointer2] then
+               append list2[pointer2] to merged_list
+               pointer1 <-- pointer2 + 1
+          endif
+   endwhile return merged_list 
+endfunction                 

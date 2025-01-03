@@ -1,0 +1,7 @@
+function calPower(x,n) return integer
+    if n=0
+       retun 1
+    else 
+        return x*calPower(x,n-1)
+    endif
+endfunction          
