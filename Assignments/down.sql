@@ -1,0 +1,15 @@
+\c social_media_feed
+
+DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS post;
+
+DROP TABLE IF EXISTS comments;
+
+DROP TABLE IF EXISTS reaction;
+
+DROP TABLE IF EXISTS post_state;
+
+DROP TABLE IF EXISTS shared;
+
+DROP TABLE IF EXISTS repost;

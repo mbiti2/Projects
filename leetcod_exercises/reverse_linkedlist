@@ -1,0 +1,19 @@
+Function reverseLinkedList(head):
+    # Step 1: Initialize pointers
+    previous = NULL
+    current = head
+
+    # Step 2: Loop through the list
+    While current is not NULL do
+        # Save the next node
+        next = current.next
+
+        # Reverse the link
+        current.next = previous
+
+        # Move pointers forward
+        previous = current
+        current = next
+
+    Return the new head
+    Return previous

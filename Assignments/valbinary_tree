@@ -1,0 +1,15 @@
+Function isBinaryTreeValid(node, min, max) Return boualem
+    If node is NULL then
+        Return True
+    endif    
+    
+    If node.value <= min OR node.value >= max then
+        Return False
+    endif    
+    
+    LeftValid <-- isBinaryTreeValid(node.left, min, node.value)
+    RightValid <-- isBinaryTreeValid(node.right, node.value, max)
+    
+    Return LeftValid AND RightValid
+
+
